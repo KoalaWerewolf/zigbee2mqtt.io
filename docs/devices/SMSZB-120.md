@@ -24,6 +24,8 @@ pageClass: device-page
 
 <!-- Notes BEGIN: You can edit here. Add "## Notes" headline if not already present. -->
 ## Notes
+
+### Supported channels
 The technical manual from Develco states that SMSZB-120 scans Zigbee channels 11-24 when searching for a network to join.
 
 ### Warning usage
