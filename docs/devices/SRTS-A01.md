@@ -62,6 +62,19 @@ To read (`/get`) the value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME
 To write (`/set`) a value publish a message to topic `zigbee2mqtt/FRIENDLY_NAME/set` with payload `{"sensor": NEW_VALUE}`.
 The possible values are: `internal`, `external`.
 
+#### External temperature sensor
+If `sensor` is set to `external` then the currently measured temperature can be set using the value of an external sensor. The temperature is set by publishing a message to topic `zigbee2mqtt/FRIENDLY_NAME/set/sensor_temp` with payload `{VALUE}`.
+
+Home Assistant example:
+```
+service: mqtt.publish
+data:
+  topic: zigbee2mqtt/FRIENDLY_NAME/set/sensor_temp
+  payload_template: "{{ (states('sensor.EXTERNAL_TEMPERATURE')|float(0)|round(1)) }}"
+  qos: 0
+  retain: false
+```
+
 ### Calibrated (binary)
 Is the valve calibrated.
 Value can be found in the published state on the `calibrated` property.
